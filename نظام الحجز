@@ -1,0 +1,55 @@
+import React, { useState } from "react";
+
+export default function BookingFormArabic({ onBook }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [date, setDate] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onBook({ name, phone, date });
+    setName("");
+    setPhone("");
+    setDate("");
+  };
+
+  return (
+    <form onSubmit={handleSubmit} style={{ direction: "rtl", maxWidth: "400px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "8px", background: "#f9f9f9" }}>
+      <h2 style={{ textAlign: "center" }}>حجز موعد في عيادة د. بشير محمد طاهر</h2>
+      
+      <label htmlFor="name">الاسم الثلاثي:</label>
+      <input
+        id="name"
+        type="text"
+        value={name}
+        onChange={e => setName(e.target.value)}
+        required
+        style={{ width: "100%", marginBottom: "10px", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+      />
+
+      <label htmlFor="phone">رقم الجوال:</label>
+      <input
+        id="phone"
+        type="text"
+        value={phone}
+        onChange={e => setPhone(e.target.value)}
+        required
+        style={{ width: "100%", marginBottom: "10px", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+      />
+
+      <label htmlFor="date">تاريخ ووقت الموعد:</label>
+      <input
+        id="date"
+        type="datetime-local"
+        value={date}
+        onChange={e => setDate(e.target.value)}
+        required
+        style={{ width: "100%", marginBottom: "10px", padding: "8px", borderRadius: "4px", border: "1px solid #ccc" }}
+      />
+
+      <button type="submit" style={{ width: "100%", padding: "10px", background: "#4caf50", color: "#fff", border: "none", borderRadius: "4px" }}>
+        احجز الآن
+      </button>
+    </form>
+  );
+}
